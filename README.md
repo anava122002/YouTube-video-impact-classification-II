@@ -99,6 +99,30 @@ conocida como hinge loss. Cuando el ejemplo está mal clasificado o dentro del m
 
 ### 4. Random Forest
 
+Un árbol de decisión al uso sin restricciones se sobreajusta demasiado, lo que en este caso en un problema. Random Forest, por otra parte, previene el overfitting haciendo uso de:
+
+* **Bagging:** para cada árbol se toma una muestra aleatoria con reemplazamiento de n elementos, siendo n el total de observaciones, de modo que cada árbol "ve" datos diferentes y comete distintos errores. Para predecir, cada árbol vota y gana la clase más votada.
+
+* **Feature sampling:** si hay una feature muy predictiva puede darse el caso en que los errores de cada árbol esten correlacionados. Para evitarlo, el nodo considera solo una muestra aleatoria de √n para hacer el split, haciendo a los árboles más distintos entre sí y previniendo la correlación.
+
+El principal problema que presenta Random Forest para este caso es que la mayoría de features son 0 para cada comentario (son 20-50 palabras frente a las posiblemente más de 10.000 del dataset total), lo que hace muy probable que las palabras de un comentario se pierdan en los splits.
+
+
+## Arquitectura del Código
+El proyecto  se compone de dos partes principales: vectorización del texto y entrenamiento/evaluación del modelo.
+
+Todo el proceso se registra en un [notebook]().
+
+### Preprocesado de datos (`vectorize.py`)
+Contiene la función que divide el dataset en train/test y se vectorizan los comentarios.
+
+### Vectorización del texto (`model.py`)
+Contiene las funciones para entrenar y evaluar los modelos. La función de evaluación imprime la matriz de confusión y el classification report.
+
+
+## Resultados
+
+
 
 
 
