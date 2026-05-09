@@ -1,4 +1,4 @@
-# Modelos de Clasificación de Lenguaje con Scikit-Learn y Pytorch
+# Modelos de Clasificación de Lenguaje con Scikit-Learn
 
 Tras entender como funcionan los clasificadores de texto y, concretamente, [aquellos basados en Naive Bayes](https://github.com/anava122002/YouTube-video-impact-classification), en este proyecto pretendo dar un paso más. Para ello:
 
@@ -111,12 +111,12 @@ El principal problema que presenta Random Forest para este caso es que la mayor�
 ## Arquitectura del Código
 El proyecto  se compone de dos partes principales: vectorización del texto y entrenamiento/evaluación del modelo.
 
-Todo el proceso se registra en un [notebook]().
+Todo el proceso se registra en un [notebook](https://github.com/anava122002/YouTube-video-impact-classification-II/blob/main/notebooks/all_models.ipynb).
 
-### Preprocesado de datos (`vectorize.py`)
+### Vectorización (`vectorize.py`)
 Contiene la función que divide el dataset en train/test y se vectorizan los comentarios.
 
-### Vectorización del texto (`model.py`)
+### Entrenamiento y Evaluación (`model.py`)
 Contiene las funciones para entrenar y evaluar los modelos. La función de evaluación imprime la matriz de confusión y el classification report.
 
 
@@ -165,11 +165,12 @@ El problema principal es la combinación de dos factores. Por un lado el desbala
 comparten gran parte del vocabulario.
 
 
-## Comparación con Resultados Anteriores
+## Comparación con Resultados Anteriores y Planes a Futuro
 
-Paradójicamente, el modelo implementado manualmente en el Proyecto 1 obtenía resultados comparables gracias a un feature engineering muy específico al dataset: el manejo explícito de negaciones con prefijos `NOT_` y un ajuste manual de umbrales. Esto ilustra que un pipeline 
-más genérico y profesional no siempre supera al artesanal sin un ajuste fino al dominio, y 
+Paradójicamente, el modelo implementado manualmente en el Proyecto 1 obtenía resultados comparables gracias a un feature engineering muy específico al dataset: el manejo explícito de negaciones con prefijos `NOT_` y un ajuste manual de umbrales. Esto ilustra que un pipeline más genérico y profesional no siempre supera al artesanal sin un ajuste fino al dominio, y 
 que la clave está en la calidad de la representación del texto.
+
+Todavía queda una alternativa que puede mejorar los resultados actuales: el uso de BERT. Su punto fuerte con respecto a los modelos anteriores es que se especializa en codificar texto para tareas de compresión, clasificación y análisis de sentimiento, justo lo que necesitamos aquí.
 
 ## Cómo Replicar el Proyecto
 
