@@ -122,6 +122,62 @@ Contiene las funciones para entrenar y evaluar los modelos. La función de evalu
 
 ## Resultados
 
+|     MODELO           | Macro F1   |   Accuracy |
+|        :---          |   :---:    |   :---:    |
+|**MultinomialNB**     |    0.63    |    0.75    |
+|**ComplementNB**      |    0.64    |    0.76    |
+|**LogisticRegression**|    0.65    |    0.74    |             
+|**LinearSVC**         |    0.64    |    0.76    |
+|**RandomForest**      |    0.50    |    0.73    |
+
+
+## Modificaciones del Modelo LogisticRegression
+
+|MODELO  LogisticRegression| class_weight  |     C     | Macro F1   |   Accuracy |
+|        :---              |   :---:       |   :---:   |   :---:    |   :---:    |
+|**Modelo Inicial**        |  *balanced*   | *default* |    0.65    |  0.75      |
+|**Modificación 0**        |[2.2, 1.5, 0.5]|   1       |    0.66    |     0.75   |
+|**Modificación 1**        |[2.2, 1.5, 1.5]|   1       |    0.63    |    0.77    |
+|**Modificación 2**        |[2.2, 1.5, 1.5]|    2.5    |    0.65    |   0.78     |          
+|**Modificación 3**        | [2.5, 1.5, 1] |    2.5    |    0.66    |   0.78     |
+
+## Modificaciones del Modelo LinearSVC
+
+|MODELO  LinearSVC         | class_weight  |     C     | Macro F1   |   Accuracy |
+|        :---              |   :---:       |   :---:   |   :---:    |   :---:    |
+|**Modelo Inicial**        |  *balanced*   | *default* |    0.64    |  0.76      |
+|**Modificación 0**        | [3, 1.5, 0.5] |   1       |    0.65    |     0.76   |
+|**Modificación 1**        |  [3, 1, 1.5]  |   1       |    0.65    |    0.77    |
+
+## Conclusiones
+
+Los cinco modelos evaluados convergen hacia un techo de macro F1 de aproximadamente 0.65, 
+independientemente del algoritmo utilizado o de los ajustes de hiperparámetros realizados. 
+La única excepción es Random Forest, que queda significativamente por debajo debido a su 
+incompatibilidad con vectores TF-IDF sparse. Este resultado sugiere que la limitación no 
+está en los modelos sino en la representación del texto.
+
+El problema principal es la combinación de dos factores. Por un lado el desbalance de clases, 
+que arrastra las predicciones hacia la clase mayoritaria y que solo se corrige parcialmente 
+mediante `class_weight`. Por otro la naturaleza de TF-IDF como representación bag-of-words: 
+trata las palabras como independientes entre sí y sin contexto, lo que dificulta especialmente 
+la distinción entre comentarios positivos y neutros, clases semánticamente cercanas que 
+comparten gran parte del vocabulario.
+
+
+## Comparación con Resultados Anteriores
+
+Paradójicamente, el modelo implementado manualmente en el Proyecto 1 obtenía resultados 
+comparables gracias a un feature engineering muy específico al dataset: el manejo explícito 
+de negaciones con prefijos `NOT_` y un ajuste manual de umbrales. Esto ilustra que un pipeline 
+más genérico y profesional no siempre supera al artesanal sin un ajuste fino al dominio, y 
+que la clave está en la calidad de la representación del texto.
+
+## Cómo Replicar el Proyecto
+
+* Ejecutar archivo `main.py`. Este devuelve los resultados del entrenamiento y el reporte impresio en pantalla, además de la matriz de confuión, del modelo considerado óptimo. Los parámetros son modificables.
+
+* Ejecutar archivo `notebooks/all_models.ipynb` para ver los resultados de todos los modelos entrenados para el repositorio.
 
 
 

@@ -12,7 +12,7 @@ def train(model, X_train, X_test, y_train, y_test):
 
     return results, accuracy
 
-def evaluation(y_test, y_pred, target_names = ["Positivo", "Neutro", "Negativo"]):
+def evaluation(y_test, y_pred, target_names = ["Negativo", "Neutro", "Positivo"]):
     report_dict = classification_report(y_test, y_pred, target_names=target_names, output_dict=True)
 
     conf_matrix = confusion_matrix(y_test, y_pred)

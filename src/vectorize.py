@@ -22,9 +22,9 @@ def vectorization(X_data, y_data):
     # usar fit con datos de entrenamiento ensucia el aprendizaje (data leakage)
 
     print(f'Total comentarios para entrenamiento: {X_train_v.shape[0]} ({round(X_train_v.shape[0]/len(X_data), 2)*100}% del total)')
-    print(f"{round(y_train[y_train == 'positive'].shape[0]/y_train.shape[0], 2)*100}% positives\n{round(y_train[y_train == 'neutral'].shape[0]/y_train.shape[0], 2)*100}% neutros\n{round(y_train[y_train == 'negative'].shape[0]/y_train.shape[0], 2)*100}% negativos\n")
+    print(f"{round(y_train[y_train == 'positive'].shape[0]/y_train.shape[0], 2)*100}% positivos\n{round(y_train[y_train == 'neutral'].shape[0]/y_train.shape[0], 2)*100}% neutros\n{round(y_train[y_train == 'negative'].shape[0]/y_train.shape[0], 2)*100}% negativos\n")
     print(f'Total comentarios para evaluación: {X_test_v.shape[0]} ({round(X_test_v.shape[0]/len(X_data), 2)*100}% del total)')
-    print(f"{round(y_test[y_test == 'positive'].shape[0]/y_test.shape[0], 2)*100}% positives\n{round(y_test[y_test == 'neutral'].shape[0]/y_test.shape[0], 2)*100}% neutros\n{round(y_test[y_test == 'negative'].shape[0]/y_test.shape[0], 2)*100}% negativos\n")
+    print(f"{round(y_test[y_test == 'positive'].shape[0]/y_test.shape[0], 2)*100}% positivos\n{round(y_test[y_test == 'neutral'].shape[0]/y_test.shape[0], 2)*100}% neutros\n{round(y_test[y_test == 'negative'].shape[0]/y_test.shape[0], 2)*100}% negativos\n")
     
     return X_train_v, X_test_v, y_train, y_test
 
